@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+  <script>
+    // Implement a rock paper scissors game
+    //Keep score and round
+    playerScore = 0;
+    computerScore = 0;
+    roundNumber = 0
+    game()
+
+    function game() {
+      if (roundNumber > 4) {
+        console.log("Game over! Final score: Player - " + playerScore + " computer - " + computerScore)
+        return 0
+      }
+      let playerSelection = prompt("Choose your play:").toLowerCase();
+      if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+        alert("please provide rock, paper, or scissors");
+        game();
+      }
+      else {
+      playRound(playerSelection);
+      }
+    }
+    // get computer's play
+    function computerPlay() {
+        var min=1; 
+        var max=3;  
+        var random = Math.floor(Math.random() * (max - min + 1)) + min;
+        if (random == 1) {
+            return "rock";
+        }
+        else if (random == 2) {
+            return "paper";
+        }
+        return "scissors";
+    }
+
+    function playRound(playerSelection) {
+      computerSelection = computerPlay();
+      if (playerSelection == computerSelection) {
+        console.log("It's a tie!");
+      }
+      else if (playerSelection == "rock") {
+        if (computerSelection == "paper") {
+          computerScore++;
+          console.log("You Lose! Paper beats Rock");
+        }
+        else {
+        playerScore++;
+        console.log("You Win! Rock beats Scissors");
+        }
+      }
+      else if (playerSelection == "paper") {
+        if (computerSelection == "scissors") {
+          computerScore++;
+          console.log("You Lose! Scissors beat Paper");
+        }
+        else {
+        playerScore++;
+        console.log("You Win! Paper beats Rock");
+        }
+      }
+      else if (playerSelection == "scissors") {
+        if (computerSelection == "rock") {
+          computerScore++;
+          console.log("You Lose! Rock beats Scissors");
+        }
+        else {
+        playerScore++;
+        console.log("You Win! Scissors beat Paper");
+        }
+      }
+      roundNumber++;
+      game();
+    }
+
+
+  </script>
+</body>
+</html>
